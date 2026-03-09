@@ -1,0 +1,12 @@
+body { height: 100vh; }
+
+.flex { display: flex; }
+.row { flex-direction: row; }
+.align-center { align-items: center; }
+.gap-1 { gap: 1rem; }
+.border-soft { border-radius: .4rem; }
+.padding-1 { padding: 1rem; }
+.box-shadow { box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; }
+.m-auto { margin: auto; }
+
+footer { margin-top: auto; }
