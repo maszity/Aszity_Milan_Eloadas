@@ -9,6 +9,7 @@ body { height: 100vh; background-color: #cdcdcd; margin: 2rem; }
 .col { flex-direction: column; }
 .align-stretch { align-items: stretch; }
 .align-center { align-items: center; }
+.justify-center { justify-content: center; }
 .space-between { justify-content: space-between; }
 .gap-1 { gap: 1rem; }
 .border-soft { border-radius: .4rem; }
@@ -36,6 +37,20 @@ body { height: 100vh; background-color: #cdcdcd; margin: 2rem; }
 .card-descr { font-size: .9rem; color: #b2b2b2; }
 .card-primary { color: #FFAA00; }
 .card-danger { color: #ee4a13; }
+
+
+
+input[type='search'] {
+
+    padding: .5rem 1rem;
+
+    font-size: 1rem;
+
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #FFAA00;
+
+}
 
 footer {
     margin-top: 3rem;
