@@ -58,6 +58,7 @@ export class Segedlet {
         return { ar, suti, tartalom };
     }
     
+    
     /**
      * Betöltött adatok indexelése, az adatok kezelhetőségéhez
      * @param {array} adatok 
@@ -107,5 +108,5 @@ export class Segedlet {
         };
     }
 
-    
+
 }
