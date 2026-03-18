@@ -83,3 +83,26 @@ document.getElementById('suti-felvetele').addEventListener('click', () => {
 
     reInit();
 });
+
+document.addEventListener('click', (e) => {
+
+    const torlendoSuti = e.target.closest('[suti-akcio]')
+
+    if (!torlendoSuti) return;
+
+    const sutiAkcio = torlendoSuti.getAttribute("suti-akcio");
+
+    switch (sutiAkcio) {
+        case 'suti-torles':
+    
+            let torlendoSutiId = torlendoSuti.getAttribute('data-id');
+            sutiService.sutiTorles(torlendoSutiId)
+            sutik = sutiService.osszesSuti();
+            reInit();
+
+        break;
+    
+        default: return;
+    }
+
+})

@@ -62,4 +62,18 @@ export class Sutik {
     }
 
 
+    sutiTorles (id) {
+
+        id = Number(id);
+
+        this.db.suti = this.db.suti.filter(suti => Number(suti.id) !== id);
+
+        this.db.sutiById.delete(id);
+        this.db.arBySuti.delete(id);
+        this.db.tartalomBySuti.delete(id);
+
+
+    }
+
+
 }
