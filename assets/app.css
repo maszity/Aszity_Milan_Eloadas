@@ -17,7 +17,10 @@ body { height: 100vh; background-color: #cdcdcd; margin: 2rem; }
 .box-shadow { box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; }
 .m-auto { margin: auto; }
 
+.pointer { cursor: pointer; }
+
 .w-fa { width: -webkit-fill-available !important; width: -moz-available; }
+.w-fc { width: fit-content; }
 
 .relative { position: relative; }
 
@@ -30,7 +33,6 @@ body { height: 100vh; background-color: #cdcdcd; margin: 2rem; }
     width: 12rem;
     min-height: 8rem;
     text-align: center;
-    justify-content: center;
 }
 
 .card-title { font-size: 1.1rem; font-weight: 500; }
@@ -38,9 +40,23 @@ body { height: 100vh; background-color: #cdcdcd; margin: 2rem; }
 .card-primary { color: #FFAA00; }
 .card-danger { color: #ee4a13; }
 
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: .4rem;
+    background-color: #FFAA00;
+    color: #333;
+    min-width: 8rem;
+    cursor: pointer;
+}
 
+button:hover {
+    filter: opacity(.9);
+}
 
-input[type='search'] {
+input[type='search'], input[type='text'] {
 
     padding: .5rem 1rem;
 

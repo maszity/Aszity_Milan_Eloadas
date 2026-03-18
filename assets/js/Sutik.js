@@ -50,4 +50,16 @@ export class Sutik {
     }
 
 
+    ujSuti(suti, ar) {
+        this.db.suti.unshift(suti);
+        this.db.sutiById.set(suti.id, suti);
+
+        if (!this.db.arBySuti.has(suti.id)) {
+            this.db.arBySuti.set(suti.id, []);
+        }
+
+        this.db.arBySuti.get(suti.id).push(ar);
+    }
+
+
 }

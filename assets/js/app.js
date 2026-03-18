@@ -4,6 +4,9 @@ import { SutiRenderer } from "./SutiRender.js";
 
 const SUTEMENY_KONTENER = document.getElementById('sutemeny-kontener');
 
+let sutik       = [];
+let sutiService = null;
+
 async function init() {
 
     try {
@@ -13,8 +16,8 @@ async function init() {
         const adatok = await seged.adatokBetoltese();
         const db     = seged.indexeles(adatok);
 
-        const sutiService = new Sutik(db);
-        const sutik       = sutiService.osszesSuti();
+        sutiService = new Sutik(db);
+        sutik       = sutiService.osszesSuti();
 
         const renderer    = new SutiRenderer(
             SUTEMENY_KONTENER,
@@ -23,6 +26,8 @@ async function init() {
 
         renderer.render(sutik);
 
+        return sutik;
+
     }
     catch (err) {
         console.error(err);
@@ -30,4 +35,51 @@ async function init() {
 
 }
 
+async function reInit () {
+
+    const renderer    = new SutiRenderer(
+        SUTEMENY_KONTENER,
+        sutiService
+    );
+
+    renderer.render(sutik);
+
+}
+
 init();
+
+document.getElementById('suti-felvetele').addEventListener('click', () => {
+
+    if (
+        document.getElementById('suti-neve').value == '' ||
+        document.getElementById('suti-tipusa').value == '' ||
+        document.getElementById('suti-ara').value == ''
+    ) {
+
+        alert('Minden mező kitöltése kötelező!');
+        return;
+
+    }
+
+    const ujId     = Math.max(...sutik.map(s => Number(s.id))) + 1;
+    const sutiAdat = {
+        id       : ujId,
+        dijazott : document.getElementById('suti-dijazott').checked ? "-1" : "0",
+        nev      : document.getElementById('suti-neve').value,
+        tipus    : document.getElementById('suti-tipusa').value
+    };
+
+    const ar = {
+        sutiid : ujId,
+        ertek  : document.getElementById('suti-ara').value,
+        egyseg : "db"
+    };
+
+    sutiService.ujSuti(sutiAdat, ar);
+
+    document.getElementById('suti-neve').value = '';
+    document.getElementById('suti-tipusa').value = '';
+    document.getElementById('suti-ara').value = '';
+
+    reInit();
+});
