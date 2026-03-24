@@ -84,3 +84,25 @@ footer {
     border-top: 1px solid #666;
     background-color: #c4c3c3;
 }
+
+.feladat {
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+
+    margin-top: 1rem;
+
+}
+
+.gombok {
+    display: flex;
+    gap: .5rem;
+    margin-left: auto;
+}
+
+.kesz {
+    text-decoration: line-through;
+    color: #666;
+}

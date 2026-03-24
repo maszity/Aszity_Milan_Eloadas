@@ -8,7 +8,7 @@ export class Alkalmazas {
 
         this.kontener = document.createElement("div");
         this.kontener.classList.add("alkalmazas");
-        this.kontener.classList += "flex col align-center gap-1 border-soft box-shadow padding-1 suti-card relative w-fc";
+        this.kontener.classList += "flex col align-center gap-1 border-soft box-shadow padding-1  relative w-fc";
 
         let cim         = document.createElement("h2");
         cim.textContent = "Teendők";

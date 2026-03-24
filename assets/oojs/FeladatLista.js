@@ -6,6 +6,7 @@ export class FeladatLista {
 
         this.feladatok = [];
         this.kontener = document.createElement("div");
+        this.kontener.classList.add('w-fa');
 
         this.betolt();
 
