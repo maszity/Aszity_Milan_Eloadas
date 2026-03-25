@@ -33,6 +33,7 @@ body { background-color: #cdcdcd; margin: 2rem; }
 #sutemeny-kontener {
 
     height: 70vh;
+    max-height: 70vh;
     overflow-y: auto;
 
 }
@@ -109,8 +110,20 @@ footer {
 
 tr td, tr th { text-align: center; padding: .5rem; }
 
-table tr:nth-child(even) {
+/* table tr:nth-child(even) {
 
     background-color: #dedede;
+
+} */
+
+table {
+
+    border-collapse: collapse;
+
+}
+
+table tr > * {
+
+    border: 1px solid #333;
 
 }

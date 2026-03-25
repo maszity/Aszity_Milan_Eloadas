@@ -20,6 +20,34 @@ window.onload = async function() {
 
     }
 
+    let update = document.getElementsByClassName('suti-update');
+
+    for (let i = 0; i < update.length; i ++) {
+
+        update[i].addEventListener('click', (e) => {
+
+            sutiUpdate(update[i].dataset.id, e);
+
+        })
+
+    }
+
+    // let save = document.getElementsByClassName('suti-mentese-post');
+
+    // for (let i = 0; i < save.length; i ++) {
+
+    //     save[i].addEventListener('click', () => {
+
+    //         console.log('asdasd')
+
+    //     });
+
+    // }
+
+    
+
+    // document.getElementById("suti-mentese").addEventListener('click', sutiUpdateMentes);
+
 };
 
 function sutiMentes () {
@@ -55,6 +83,105 @@ function sutiMentes () {
     .then(data => {
 
         FORM.reset();
+
+        if (data.success == true) {
+
+            MESSAGE.innerText = data.message;
+            MESSAGE.style.color = "green";
+
+        }
+        else {
+
+            MESSAGE.innerText = "Hiba történt a folyamat közben: " + data.error;
+            MESSAGE.style.color = "red";
+
+        }
+
+        fetchSuti();
+
+    })
+    .catch(error => {
+
+        MESSAGE.innerText = "Hiba történt a folyamat közben!";
+        MESSAGE.style.color = "red";
+
+        console.log(error)
+
+    });
+
+}
+
+function sutiUpdate (id, btn) {
+
+    const row = btn.target.closest('tr');
+    const ch  = document.getElementsByClassName("can-hide");
+
+    for (let i = 0; i < ch.length; i ++) {
+
+        ch[i].remove();
+
+    }
+
+
+    let wrapper = document.createElement('tr')
+    wrapper.innerHTML = `
+        <td colspan="5" class="can-hide">
+            <form class="flex row gap-1 w-fa card padding-1 border-soft box-shadow" id="suti-update-kontener">
+
+                <input type="hidden" id="suti-update-id" value="${id}" />
+                <input 
+                    type="text" 
+                    id="suti-update-neve" 
+                    placeholder="Adja meg a sütemény nevét"
+                    value="${row.querySelector('.suti-nev').textContent}"
+                />
+                <input 
+                    type="text" 
+                    id="suti-update-tipusa" 
+                    placeholder="Adja meg a sütemény típusát"
+                    value="${row.querySelector('.suti-tipus').textContent}"
+                />
+                <div class="flex row align-center gap-1">
+                    <label for="suti-dijazott">Díjazott sütemény</label>
+                    <input 
+                        type="checkbox"
+                        name="suti-dijazott"
+                        id="suti-update-dijazott"
+                        value="1"
+                        ${row.querySelector('.suti-dijazott').textContent == "Igen" ? "checked" : ""}
+                    />
+                </div>
+
+                <button type="button" class="flex w-fc suti-mentese-post" id="suti-mentese-post">Sütemény mentése</button>
+
+            </form>
+        </td>
+    `;
+
+    insertAfter(row, wrapper)
+
+    document.getElementById("suti-mentese-post").addEventListener('click', sutiUpdateMentes);
+
+}
+
+function sutiUpdateMentes () {
+
+    const sutiAdat = {
+
+        id       : document.getElementById('suti-update-id').value,
+        nev      : document.getElementById('suti-update-neve').value,
+        tipus    : document.getElementById('suti-update-tipusa').value,
+        dijazott : document.getElementById('suti-update-dijazott').checked,
+
+    }
+
+    fetch(API, {
+        method  : "PUT",
+        headers : {"Content-Type": "application/json"},
+        body    : JSON.stringify(sutiAdat)
+    })
+    .then(res => res.json())
+    .then(data => {
 
         if (data.success == true) {
 
@@ -147,13 +274,13 @@ async function fetchSuti () {
             
             document.getElementById('sutiTabla').innerHTML += `
                 <tr>
-                    <td>${suti.id}</td>
-                    <td>${suti.nev}</td>
-                    <td>${suti.tipus}</td>
-                    <td>${suti.dijazott === 0 ? 'Nem' : 'Igen'}</td>
+                    <td class="suti-id">${suti.id}</td>
+                    <td class="suti-nev">${suti.nev}</td>
+                    <td class="suti-tipus">${suti.tipus}</td>
+                    <td class="suti-dijazott">${suti.dijazott === 0 ? 'Nem' : 'Igen'}</td>
                     <td>
                         <div class="flex row align-center justify-center gap-1">
-                            <div class="card-badge pointer" data-id="${suti.id}" suti-akcio="suti-modositas" title="Sütemény szerkesztése">
+                            <div class="card-badge pointer suti-update" data-id="${suti.id}" suti-akcio="suti-modositas" title="Sütemény szerkesztése">
                                 <svg width="1rem" height="1rem" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path stroke="#0042aa" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.8 12.963L2 18l4.8-.63L18.11 6.58a2.612 2.612 0 00-3.601-3.785L3.8 12.963z"></path> </g></svg>
                             </div>
                             <div class="card-badge pointer suti-torles" data-id="${suti.id}" suti-akcio="suti-torles" title="Sütemény törlése">
@@ -169,4 +296,8 @@ async function fetchSuti () {
 
     });
 
+}
+
+function insertAfter(referenceNode, newNode) {
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
