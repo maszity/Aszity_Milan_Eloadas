@@ -32,22 +32,6 @@ window.onload = async function() {
 
     }
 
-    // let save = document.getElementsByClassName('suti-mentese-post');
-
-    // for (let i = 0; i < save.length; i ++) {
-
-    //     save[i].addEventListener('click', () => {
-
-    //         console.log('asdasd')
-
-    //     });
-
-    // }
-
-    
-
-    // document.getElementById("suti-mentese").addEventListener('click', sutiUpdateMentes);
-
 };
 
 function sutiMentes () {
