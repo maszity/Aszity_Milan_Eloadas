@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios menü</title>
+
+    <link rel="stylesheet" href="assets/app.css" />
+
+</head>
+<body>
+    
+    <main class="flex col gap-1 padding-1">
+
+        <h2>Axios menü</h2>
+
+        <h3>Struktúra</h3>
+
+            <ul>
+                <li>/axios.html</li>
+                <li>/react/axios/src/main.jsx</li>
+                <li>/react/axios/src/App.jsx</li>
+                <li>/react/axios/src/db.php</li>
+                <li>/react/axios/src/api.php</li>
+            </ul>
+
+        <h3>Projekt felépítése</h3>
+
+
+            <h4>Frontend</h4>
+            
+                <h5>Fájlok</h5>
+                    <ul>
+                        <li>main.jsx</li>
+                        <li>App.jsx</li>
+                    </ul>
+
+
+                <h5>Feladat</h5>
+                <ul>
+                    <li>Felhasználói felület megjelenítése</li>
+                    <li>Adatok bekérése és kezelése</li>
+                    <li>HTTP kérések küldése a backend felé Axios segítségével</li>
+                </ul>
+
+            <h4>Backend</h4>
+
+                <h5>Fájlok</h5>
+
+                <ul>
+                    <li>api.php</li>
+                    <li>db.php</li>
+                </ul>
+
+
+                <h5>api.php</h5>
+
+                <p>HTTP kérések kezelése</p>
+                <ul>
+                    <li>GET → adatok lekérdezése</li>
+                    <li>POST → új sütemény létrehozása</li>
+                    <li>PUT → meglévő sütemény módosítása</li>
+                    <li>DELETE → sütemény törlése</li>
+                </ul>
+
+
+                <h5>db.php</h5>
+                <p>Kapcsolódás a MySQL adatbázishoz PDO segítségével</p>
+
+
+
+        <h3>Működés</h3>
+
+            <h4>Adatok lekérése</h4>
+                <ul>
+                    <li>React GET kérést küld az api.php felé</li>
+                    <li>PHP lekérdezi az adatbázist (SELECT)</li>
+                    <li>JSON formátumban visszaküldi az adatokat</li>
+                </ul>
+
+            <h4>Új sütemény hozzáadása</h4>
+                <ul>
+                    <li>React POST kérést küld</li>
+                    <li>PHP beszúrja az adatot (INSERT)</li>
+                    <li>Válaszként visszaadja az állapotot</li>
+                </ul>
+
+            <h4>Sütemény módosítása</h4>
+                <ul>
+                    <li>React PUT kérést küld</li>
+                    <li>PHP frissíti az adatot (UPDATE)</li>
+                </ul>
+
+            <h4>Sütemény törlése</h4>
+                <ul>
+                    <li>React DELETE kérést küld</li>
+                    <li>PHP törli az adatot (DELETE)</li>
+                </ul>
+
+
+    </main>
+
+</body>
+</html>

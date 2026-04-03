@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React menü</title>
+    <link rel="stylesheet" href="assets/app.css" />
+</head>
+<body>
+
+    <main class="flex col gap-1 padding-1">
+        <h2>React menü</h2>
+    
+        <br>
+
+        <h3>Struktúra</h3>
+        <ul>
+            <li>/react.html </li>
+            <li>/react/crud/src/main.jsx </li>
+            <li>/react/crud/src/App.jsx </li>
+            <li>/react/crud/src/tables/SutiTabla.jsx </li>
+            <li>/react/crud/src/forms/AddSutiForm.jsx </li>
+            <li>/react/crud/src/forms/SutiSzerkesztForm.jsx </li>
+        </ul>
+        
+
+        <p>React alapú frontend alkalmazás a CRUD megvalósítására. Az alkalmazás főbb funkciói:</p>
+
+        <ul>
+            <li>Süti lista megjelenítése </li>
+            <li>Hozzáadás / szerkesztés űrlapok külön komponensekben (AddSutiForm, SutiSzerkesztForm) </li>
+            <li>Táblázatos megjelenés SutiTabla komponenssel </li>
+            <li>Minden művelet állapotkezelése a React újrarajzolással </li>
+        </ul>
+        
+        <img style="height: 24rem; object-fit: contain;" src="/assets/images/react1.png" alt="React CRUD" />
+
+        <br>
+
+        <h3>Projekt felépítése </h3>
+        
+        <h4>App.jsx </h4>
+
+        <p>Az alkalmazás alapja, itt vannak definiálva a szükséges változók, az adatbázis adatai itt kerülnek tárolásra egy tömbben.  Az alkalmazás logikai metódusai is ide kerültek elhelyezésre (CRUD) amik a szabványos módon a használák a rect useState metódust.</p>
+
+        <p>Példa: </p>
+
+        <pre>
+            const [sutemenyLista, setSutemenyLista] = useState(sutemenyek); 
+            const addSutemeny = sutemeny => { 
+                sutemeny.id = Math.max(...sutemenyLista.map(s => s.id), 0) + 1; 
+                setSutemenyLista([...sutemenyLista, sutemeny]); 
+            }; 
+        </pre>
+
+        <h4>SutiTabla.jsx </h4>
+        <p>Egyszerű React Komponens, a tárolt adatok megjelenítésére. </p>
+
+        
+        <h4>AddSutiForm.jsx </h4>
+        <p>React komponens ami megjeleníti a sütemény felvételéhez szükséges űrlapot a hozzá tartozó mezőkkel. A renderelés előtt segéd metódusok lettek létrehozva, amik a useState funkciót használják. </p>
+
+        <p>Egy apró, de elegáns megoldással ellenőrzésre kerülnek az adatok, hogy minden szükséges érték meg lett-e adva. Amennyiben nem, a sütemény nem kerül létrehozásra. </p>
+
+        <p>Példa: </p>
+
+        <pre>
+            onSubmit={event => { 
+                event.preventDefault(); 
+                if (!sutemeny.nev || !sutemeny.tipus) return; 
+                props.addSuti(sutemeny); 
+                setSutemeny({ nev: "", tipus: "", dijazott: 0 }); 
+            }}
+        </pre>
+
+        
+
+        <h4>SutiSzerkesztForm.jsx </h4>
+        <p>Szinte az AddSutiForm.jsx másolata, néhány aprósággal kiegészítve. </p>
+
+        <p>Az editRow metódust meghívva (Szerkesztés gomb), a kiválasztott sütemény adatai továbbítva lesznek a SutiSzerkesztForm komponensnek, így a kiválasztott süti értékeit be is tudjuk automatikusan íratni a szerkesztési űrlap mezőibe. </p>
+
+        <img style="height: 8rem; object-fit: contain;" src="/assets/images/react2.png" alt="React CRUD" />
+
+    </main>
+</body>
+</html>
