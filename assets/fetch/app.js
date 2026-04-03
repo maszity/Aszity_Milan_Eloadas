@@ -110,7 +110,7 @@ function sutiUpdate (id, btn) {
     let wrapper = document.createElement('tr')
     wrapper.innerHTML = `
         <td colspan="5" class="can-hide">
-            <form class="flex row gap-1 w-fa card padding-1 border-soft box-shadow" id="suti-update-kontener">
+            <form class="flex row flex-wrap gap-1 w-fa card padding-1 border-soft box-shadow" id="suti-update-kontener">
 
                 <input type="hidden" id="suti-update-id" value="${id}" />
                 <input 
